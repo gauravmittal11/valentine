@@ -6,43 +6,54 @@
     <title>For Mona ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* FIXED: Scrolling enabled and full height */
+        html, body {
             font-family: 'Nunito', sans-serif;
             background-color: #fff0f5;
             text-align: center;
             margin: 0;
             padding: 0;
             color: #d6336c;
-            overflow-x: hidden; /* Allows vertical scrolling */
+            overflow-x: hidden; 
+            overflow-y: auto; /* Essential for scrolling */
+            width: 100%;
+            height: 100%;
         }
 
         /* --- SCREEN 1: THE ASK --- */
         .header {
-            min-height: 100vh;
+            min-height: 100vh; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            padding-bottom: 50px; 
             position: relative; 
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 5px;
+            font-size: 2.5rem; 
+            margin-bottom: 10px;
             font-weight: 800;
             z-index: 10; 
+            line-height: 1.2;
         }
 
         .sub-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #ff8787;
             margin-bottom: 20px;
             z-index: 10;
         }
 
+        /* FIXED: Added pointer-events none so clicks go through the GIF */
+        .gif-container {
+            pointer-events: none; 
+        }
+
         .gif-container img {
-            width: 200px;
+            width: 200px; 
             height: auto;
             border-radius: 15px;
             margin-bottom: 20px;
@@ -53,11 +64,13 @@
         .buttons {
             margin-top: 20px;
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
             align-items: center;
             position: relative;
-            z-index: 9999; /* Super high priority to ensure clickable */
+            z-index: 9999; /* Super High Z-Index to ensure clickability */
+            width: 100%;
         }
 
         button {
@@ -68,16 +81,15 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease; /* Smoother animation */
+            transition: all 0.2s; 
             white-space: nowrap; 
-            position: relative;
+            position: relative; /* Essential for moving */
         }
 
         .yes-btn {
             background-color: #ff4d6d;
             color: white;
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
-            transform-origin: center; /* Grows from the center */
         }
         
         .no-btn {
@@ -226,7 +238,7 @@
         }
 
         .envelope.open ~ .letter-content {
-            max-height: 1000px; 
+            max-height: 1200px; /* Increased height to fit extra GIF */
         }
 
         .letter-text {
@@ -238,6 +250,13 @@
             border-radius: 10px;
             text-align: left;
             border: 1px dashed #d6336c;
+        }
+
+        .letter-gif {
+            width: 150px;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto 15px auto;
         }
 
         /* --- QUIZ SECTION --- */
@@ -341,9 +360,7 @@
 
     <div class="header" id="welcome-screen">
         <div class="gif-container">
-            <img src="https://media.tenor.com/I7kd7vprOzkAAAAC/peach-goma-peach-cat.gif" 
-                 onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2QzN2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5/LH2b1f1388k8/giphy.gif'" 
-                 alt="Cute Cat">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWgyeDlmbWQ0N3l3ZXBrOXl2MGNqeGZyOHRkaTJpamx1dTZqbmtweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wPnbkEcr2tXiTN0Lmq/giphy.gif" alt="Cute Cat">
         </div>
         <h1>Mona, will you be my Valentine?</h1>
         <p class="sub-text">Official invite from your long-distance boyfriend ❤️</p>
@@ -358,9 +375,7 @@
         
         <h1>Good choice babu 😇</h1>
         <div class="gif-container">
-            <img src="https://media.tenor.com/sS7vanW7qC4AAAAi/mochi-mochi-peach-cat-hug.gif" 
-                 onerror="this.src='https://media.giphy.com/media/MdDb2d8sW5Fm/giphy.gif'" 
-                 alt="Hugs" style="width: 250px;">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3FkZnVzaHpncWg2ZW9ieWp1a3Y5cG02bm5yNDhuNDdkdW9zYmx1ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PF6e8Xq8dVnVX1BGLS/giphy.gif" alt="Hugs" style="width: 250px;">
         </div>
         <p style="font-size: 1.2rem; margin-top: 10px;">
             You just unlocked unlimited hugs, kisses, and cuddles!<br>
@@ -431,6 +446,7 @@
             
             <div class="letter-content" id="letterContent">
                 <div class="letter-text">
+                    <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OG5hdG1ieHVyNnd1dzBzbmJxbjNpZnZ2bHhvMmpnZTViaWk0NWFwaCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/qFmdpUKAFZ6rMobzzu/giphy.gif" class="letter-gif" alt="Cute Cat">
                     <b>My Dearest Mona,</b><br><br>
                     Even though we are miles apart, you are the closest person to my heart. Every notification from you makes me smile like an idiot.<br><br>
                     I wish I could be there to hug you right now, but until then, I'm sending you all my love through this screen.<br><br>
@@ -553,16 +569,25 @@
         function handleNoClick() {
             clickCount++;
             
-            // New logic: Multiply current size instead of calculating pixels
-            // This prevents the button from shrinking on the first click
+            // 1. Grow Yes Button
             let currentScale = 1 + (clickCount * 0.4); 
             yesBtn.style.transform = `scale(${currentScale})`;
 
+            // 2. Change No Button Text
             if (clickCount < texts.length) {
                 noBtn.innerText = texts[clickCount];
             } else {
                 noBtn.innerText = texts[texts.length - 1];
             }
+
+            // 3. MOVE THE BUTTON RANDOMLY
+            noBtn.style.position = 'absolute';
+            // Subtract extra pixels to keep it away from edges
+            const randomX = Math.random() * (window.innerWidth - 150);
+            const randomY = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
         }
 
         function acceptLove() {
