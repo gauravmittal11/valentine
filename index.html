@@ -92,6 +92,18 @@
             overflow-y: scroll;
         }
 
+        /* Scrollbar styling */
+        .hidden-content::-webkit-scrollbar {
+            width: 10px;
+        }
+        .hidden-content::-webkit-scrollbar-track {
+            background: #fff0f5; 
+        }
+        .hidden-content::-webkit-scrollbar-thumb {
+            background: #ff4d6d; 
+            border-radius: 10px;
+        }
+
         .contract {
             background: white;
             padding: 20px;
@@ -128,6 +140,45 @@
             margin-right: 15px;
             accent-color: #ff4d6d;
         }
+
+        /* --- TIMELINE SECTION --- */
+        .timeline {
+            margin: 60px auto;
+            max-width: 600px;
+            position: relative;
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #ffb3c1;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '❤️';
+            position: absolute;
+            left: -11px;
+            top: 0;
+            background: #fff0f5;
+            padding: 5px 0;
+        }
+
+        .t-date { color: #ff4d6d; font-weight: bold; font-size: 0.9rem; }
+        .t-title { font-weight: 800; font-size: 1.2rem; margin: 5px 0; }
+        .t-desc { color: #666; font-size: 0.95rem; }
 
         /* --- LOVE LETTER --- */
         .love-letter {
@@ -200,12 +251,42 @@
             border: 1px dashed #d6336c;
         }
 
+        /* --- QUIZ SECTION --- */
+        .quiz-container {
+            margin: 60px auto;
+            max-width: 600px;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-opt {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ffe3e3;
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
+            color: #555;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .quiz-opt:hover { background: #ffe3e3; }
+        .correct { background: #d3f9d8 !important; border-color: #40c057 !important; }
+        .wrong { background: #ffe3e3 !important; border-color: #ff6b6b !important; }
+
         /* --- SECRET SURPRISES SECTION --- */
         .surprises {
-            margin: 60px 0;
+            margin: 60px auto;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .surprise-grid {
@@ -244,13 +325,34 @@
             border-left: 5px solid #ff4d6d;
         }
 
+        /* --- WHATSAPP BUTTON --- */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-block;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
     </style>
 </head>
 <body>
 
     <div class="header" id="welcome-screen">
         <div class="gif-container">
-            <img src="https://media.tenor.com/I7kd7vprOzkAAAAC/peach-goma-peach-cat.gif" alt="Cute Cat">
+            <img src="https://media.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Cute Cat">
         </div>
         <h1>Mona, will you be my Valentine?</h1>
         <p class="sub-text">Official invite from your long-distance boyfriend ❤️</p>
@@ -265,7 +367,7 @@
         
         <h1>Good choice babu 😇</h1>
         <div class="gif-container">
-            <img src="https://media.tenor.com/sS7vanW7qC4AAAAi/mochi-mochi-peach-cat-hug.gif" alt="Hugs" style="width: 250px;">
+            <img src="https://media.giphy.com/media/MdDb2d8sW5Fm/giphy.gif" alt="Hugs" style="width: 250px;">
         </div>
         <p style="font-size: 1.2rem; margin-top: 10px;">
             You just unlocked unlimited hugs, kisses, and cuddles!<br>
@@ -297,6 +399,34 @@
             <div class="task"><input type="checkbox"> Virtual coffee dates where we pretend we're fancy ☕</div>
         </div>
 
+        <div class="timeline">
+            <h2 style="text-align: center; margin-bottom: 30px;">Our Love Story so far... 📖</h2>
+            
+            <div class="timeline-item">
+                <div class="t-date">The Beginning</div>
+                <div class="t-title">When we first started talking</div>
+                <div class="t-desc">I knew instantly that you were going to be special.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="t-date">The Realization</div>
+                <div class="t-title">Falling for you</div>
+                <div class="t-desc">It didn't take long for me to realize I wanted you in my life forever.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="t-date">The Challenge</div>
+                <div class="t-title">Long Distance Sucks</div>
+                <div class="t-desc">But we make it work because you are worth every mile.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="t-date">The Future</div>
+                <div class="t-title">Closing the Gap</div>
+                <div class="t-desc">One day, no more screens. Just us. ❤️</div>
+            </div>
+        </div>
+
         <div class="love-letter">
             <h2>A Letter For You 💌</h2>
             <div class="envelope" onclick="toggleLetter()">
@@ -315,6 +445,28 @@
                     Love always,<br>
                     <b>Gaurav ❤️</b>
                 </div>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <h2>How well do you know us? 🤔</h2>
+            
+            <div class="quiz-card">
+                <p>1. Who loves the other person more?</p>
+                <button class="quiz-opt" onclick="checkAnswer(this, 'correct')">Gaurav</button>
+                <button class="quiz-opt" onclick="checkAnswer(this, 'correct')">Gaurav (obviously)</button>
+            </div>
+
+            <div class="quiz-card">
+                <p>2. What is my favorite thing to do?</p>
+                <button class="quiz-opt" onclick="checkAnswer(this, 'wrong')">Sleeping</button>
+                <button class="quiz-opt" onclick="checkAnswer(this, 'correct')">Talking to Mona ❤️</button>
+            </div>
+
+            <div class="quiz-card">
+                <p>3. Are you going to keep me forever?</p>
+                <button class="quiz-opt" onclick="checkAnswer(this, 'correct')">YES!!</button>
+                <button class="quiz-opt" onclick="checkAnswer(this, 'wrong')">Maybe?</button>
             </div>
         </div>
 
@@ -386,7 +538,11 @@
             </div>
         </div>
 
-        <br><br><br>
+        <a href="https://wa.me/?text=I%20said%20YES%20Gaurav!%20%E2%9D%A4%EF%B8%8F%20Happy%20Valentine's%20Day!" class="whatsapp-btn">
+            Send me a "YES" on WhatsApp 💬
+        </a>
+
+        <br><br><br><br>
     </div>
 
     <script>
@@ -417,31 +573,4 @@
         function acceptLove() {
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-            document.body.style.overflow = "auto"; 
-        }
-
-        function showContract() {
-            document.getElementById('contract').style.display = 'block';
-            document.getElementById('contract').scrollIntoView({behavior: 'smooth'});
-        }
-
-        function hideContract() {
-            document.getElementById('contract').style.display = 'none';
-        }
-
-        function toggleLetter() {
-            const envelope = document.querySelector('.envelope');
-            envelope.classList.toggle('open');
-        }
-
-        function toggleSurprise(id) {
-            const msg = document.getElementById('msg' + id);
-            if (msg.style.display === 'block') {
-                msg.style.display = 'none';
-            } else {
-                msg.style.display = 'block';
-            }
-        }
-    </script>
-</body>
-</html>
+            document
