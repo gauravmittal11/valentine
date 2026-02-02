@@ -13,12 +13,12 @@
             margin: 0;
             padding: 0;
             color: #d6336c;
-            overflow-x: hidden; /* Fixed: Allows vertical scrolling now! */
+            overflow-x: hidden; /* Allows vertical scrolling */
         }
 
         /* --- SCREEN 1: THE ASK --- */
         .header {
-            min-height: 100vh; /* Fixed: Adapts to screen size */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -57,7 +57,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            z-index: 9999; /* Fixed: Force buttons to be on top of everything */
+            z-index: 9999; /* Super high priority to ensure clickable */
         }
 
         button {
@@ -68,22 +68,22 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.2s; 
+            transition: all 0.3s ease; /* Smoother animation */
             white-space: nowrap; 
+            position: relative;
         }
 
         .yes-btn {
             background-color: #ff4d6d;
             color: white;
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
-            z-index: 100; 
+            transform-origin: center; /* Grows from the center */
         }
         
         .no-btn {
             background-color: white;
             color: #ff4d6d;
             border: 2px solid #ff4d6d;
-            z-index: 1; 
         }
 
         /* --- SCREEN 2: THE CELEBRATION --- */
@@ -341,7 +341,9 @@
 
     <div class="header" id="welcome-screen">
         <div class="gif-container">
-            <img src="https://i.pinimg.com/originals/c6/85/33/c6853331eb798d197600862590212971.gif" alt="Cute Cat">
+            <img src="https://media.tenor.com/I7kd7vprOzkAAAAC/peach-goma-peach-cat.gif" 
+                 onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2QzN2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5N2Y5/LH2b1f1388k8/giphy.gif'" 
+                 alt="Cute Cat">
         </div>
         <h1>Mona, will you be my Valentine?</h1>
         <p class="sub-text">Official invite from your long-distance boyfriend ❤️</p>
@@ -356,7 +358,9 @@
         
         <h1>Good choice babu 😇</h1>
         <div class="gif-container">
-            <img src="https://i.pinimg.com/originals/f2/87/25/f287251786196236b23d94943916f194.gif" alt="Hugs" style="width: 250px;">
+            <img src="https://media.tenor.com/sS7vanW7qC4AAAAi/mochi-mochi-peach-cat-hug.gif" 
+                 onerror="this.src='https://media.giphy.com/media/MdDb2d8sW5Fm/giphy.gif'" 
+                 alt="Hugs" style="width: 250px;">
         </div>
         <p style="font-size: 1.2rem; margin-top: 10px;">
             You just unlocked unlimited hugs, kisses, and cuddles!<br>
@@ -548,10 +552,12 @@
 
         function handleNoClick() {
             clickCount++;
-            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize * 1.2) + "px";
-            const currentPadding = parseFloat(window.getComputedStyle(yesBtn).padding);
-            yesBtn.style.padding = (currentPadding * 1.1) + "px";
+            
+            // New logic: Multiply current size instead of calculating pixels
+            // This prevents the button from shrinking on the first click
+            let currentScale = 1 + (clickCount * 0.4); 
+            yesBtn.style.transform = `scale(${currentScale})`;
+
             if (clickCount < texts.length) {
                 noBtn.innerText = texts[clickCount];
             } else {
