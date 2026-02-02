@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             color: #d6336c;
-            overflow: hidden; /* Prevents scrollbars */
+            overflow: hidden; /* Prevents scrollbars on main screen */
         }
 
         /* --- SCREEN 1: THE ASK --- */
@@ -89,23 +89,11 @@
             display: none;
             padding: 40px 20px;
             height: 100vh;
-            overflow-y: scroll;
+            overflow-y: scroll; /* Scroll allowed here */
         }
 
-        .contract {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px auto;
-            max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: left;
-            display: none; 
-            border: 2px dashed #ff4d6d;
-        }
-
-        /* --- VIRTUAL DATE IDEAS --- */
-        .date-ideas {
+        /* --- CONTENT BOXES --- */
+        .box-style {
             background: white;
             padding: 30px;
             border-radius: 20px;
@@ -115,6 +103,19 @@
             text-align: left;
         }
 
+        /* Contract Box */
+        .contract {
+            border: 2px dashed #ff4d6d;
+            display: none; 
+            text-align: left;
+            margin: 20px auto;
+            max-width: 500px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        /* Date Ideas */
         .task {
             display: flex;
             align-items: center;
@@ -177,6 +178,24 @@
             border-radius: 3px;
         }
 
+        /* --- LOVE NOTES SECTION --- */
+        .love-note {
+            background: #ffe6eb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #d6336c;
+            border-left: 5px solid #ff4d6d;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #888;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
     </style>
 </head>
 <body>
@@ -215,11 +234,11 @@
             <p>❌ No take-backs allowed</p>
             <p>✅ You're legally mine now (I checked)</p>
             <p>✅ Every "no" from now on = 10 extra kisses</p>
-            <p>💖 Stuck with your <b>Cutie boyfriend</b> FOREVER</p>
+            <p>💖 Stuck with your <b>gandu boyfriend</b> FOREVER</p>
             <button class="yes-btn" onclick="hideContract()" style="margin-top:10px; font-size:0.8rem; padding:5px 15px;">Okay fine 🙄</button>
         </div>
 
-        <div class="date-ideas">
+        <div class="box-style date-ideas">
             <h2>Our Virtual Date Ideas 📅</h2>
             <div class="task"><input type="checkbox"> Netflix party + video call (I'll let you pick... maybe) 🎬</div>
             <div class="task"><input type="checkbox"> Order the same food together & judge each other's eating habits 🍔</div>
@@ -259,15 +278,45 @@
                     <p class="caption">Us being chaotic together (as usual) 🤪</p>
                 </div>
             </div>
-            <br><br><br>
         </div>
+
+        <div class="box-style">
+            <h2>Messages for my Fav Person 💌</h2>
+            
+            <div class="love-note">
+                You are my favorite notification 🔔
+            </div>
+            <div class="love-note">
+                I wish I could teleport to you right now 🚀
+            </div>
+            <div class="love-note">
+                Distance means so little when someone means so much ❤️
+            </div>
+            
+            <br>
+            <h3>Some Cheesy Lines for you 😉</h3>
+            
+            <div class="love-note">
+                "Are you a keyboard? Because you are just my <b>Type</b>" ⌨️
+            </div>
+            <div class="love-note">
+                "Doctor told me I have a deficiency of Vitamin U" 💊
+            </div>
+            <div class="love-note">
+                "Google Maps ko bhi rasta nahi mil raha, ki hum kab milenge?" 🗺️😂
+            </div>
+             <div class="love-note">
+                "Na Chaand chahiye na Sitaare, bas tum chahiye aur tumhare nakhre" ✨
+            </div>
+        </div>
+        
+        <br><br><br>
     </div>
 
     <script>
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
         
-        // --- YOUR LIST OF FUNNY TEXTS ---
         const texts = [
             "No",
             "Are you sure?",
@@ -336,4 +385,3 @@
     </script>
 </body>
 </html>
-
