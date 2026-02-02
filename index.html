@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             color: #d6336c;
-            overflow: hidden; /* Prevents scrollbars initially */
+            overflow: hidden; 
         }
 
         /* --- SCREEN 1: THE ASK --- */
@@ -74,7 +74,7 @@
             background-color: #ff4d6d;
             color: white;
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
-            z-index: 100; /* Yes always on top */
+            z-index: 100; 
         }
         
         .no-btn {
@@ -129,7 +129,7 @@
             accent-color: #ff4d6d;
         }
 
-        /* --- LOVE LETTER ENVELOPE --- */
+        /* --- LOVE LETTER --- */
         .love-letter {
             background: white;
             border-radius: 20px;
@@ -186,7 +186,7 @@
         }
 
         .envelope.open ~ .letter-content {
-            max-height: 1000px; /* Expands to show letter */
+            max-height: 1000px; 
         }
 
         .letter-text {
@@ -194,58 +194,54 @@
             line-height: 1.6;
             color: #555;
             padding: 20px;
-            background: #fff8e1; /* Paper color */
+            background: #fff8e1;
             border-radius: 10px;
             text-align: left;
             border: 1px dashed #d6336c;
         }
 
-        /* --- PHOTO GALLERY --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        /* --- SECRET SURPRISES SECTION --- */
+        .surprises {
+            margin: 60px 0;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .polaroid {
-            background: white;
-            padding: 10px 10px 40px 10px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            transition: transform 0.3s;
+        .surprise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #d6336c;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .polaroid:nth-child(even) { transform: rotate(2deg); }
-        .polaroid:hover { transform: scale(1.05) rotate(0); }
+        .surprise-btn:hover { transform: scale(1.05); }
 
-        .polaroid img {
-            width: 100%;
-            display: none; 
-        }
-
-        .caption {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #888;
-            font-family: 'Courier New', monospace;
+        .surprise-msg {
             display: none;
-        }
-
-        .gift-overlay {
-            font-size: 3rem;
-            padding: 60px 0;
-            background: #ffe6eb;
-            border-radius: 3px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            color: #555;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border-left: 5px solid #ff4d6d;
         }
 
     </style>
@@ -269,7 +265,7 @@
         
         <h1>Good choice babu 😇</h1>
         <div class="gif-container">
-            <img src="https://media.tenor.com/2Uee-tV6wW4AAAAC/mochi-peach-cat-mochi-peach.gif" alt="Hugs" style="width: 250px;">
+            <img src="https://media.tenor.com/sS7vanW7qC4AAAAi/mochi-mochi-peach-cat-hug.gif" alt="Hugs" style="width: 250px;">
         </div>
         <p style="font-size: 1.2rem; margin-top: 10px;">
             You just unlocked unlimited hugs, kisses, and cuddles!<br>
@@ -317,82 +313,100 @@
                     I wish I could be there to hug you right now, but until then, I'm sending you all my love through this screen.<br><br>
                     Thank you for being my Valentine, my gaming partner, and my favorite person.<br><br>
                     Love always,<br>
-                    <b>Your Cutie Boyfriend ❤️</b>
+                    <b>Gaurav ❤️</b>
                 </div>
             </div>
         </div>
 
-        <div class="gallery">
-            <h2>Our Favorite Memories 📸</h2>
-            <p style="font-size: 0.9rem; color: #aaa;">Click to reveal each memory</p>
+        <div class="surprises">
+            <h2>Secret Surprises & Love Notes 🤫</h2>
+            <p style="color: #888; font-size: 0.9rem;">Click the buttons to unlock a message</p>
             
-            <div class="gallery-grid">
-                <div class="polaroid" onclick="revealPhoto(this)">
-                    <div class="gift-overlay">🎁</div>
-                    <img src="photo1.jpg" alt="Memory">
-                    <p class="caption">When you're taking a cute pic but food is life 🍕</p>
+            <div class="surprise-grid">
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(1)">Surprise #1 💝</button>
+                    <div class="surprise-msg" id="msg1">"Distance implies so little when someone means so much. ❤️"</div>
                 </div>
-
-                <div class="polaroid" onclick="revealPhoto(this)">
-                    <div class="gift-overlay">🎁</div>
-                    <img src="photo2.jpg" alt="Memory">
-                    <p class="caption">That smile >>> everything else in the world ✨</p>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(2)">Surprise #2 📸</button>
+                    <div class="surprise-msg" id="msg2">"Are you a camera? Because every time I look at you, I smile."</div>
                 </div>
-
-                <div class="polaroid" onclick="revealPhoto(this)">
-                    <div class="gift-overlay">🎁</div>
-                    <img src="photo3.jpg" alt="Memory">
-                    <p class="caption">Just you being you - my favorite version of perfect ❤️</p>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(3)">Surprise #3 🌙</button>
+                    <div class="surprise-msg" id="msg3">"Chand ko guroor hai ki uske paas noor hai, Par wo kya jaane, mera Valentine usse bhi mashoor hai."</div>
                 </div>
-
-                <div class="polaroid" onclick="revealPhoto(this)">
-                    <div class="gift-overlay">🎁</div>
-                    <img src="photo4.jpg" alt="Memory">
-                    <p class="caption">Us being chaotic together (as usual) 🤪</p>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(4)">Surprise #4 📱</button>
+                    <div class="surprise-msg" id="msg4">"You are my favorite notification."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(5)">Surprise #5 😉</button>
+                    <div class="surprise-msg" id="msg5">"Do you have a map? I just got lost in your eyes."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(6)">Surprise #6 ❤️</button>
+                    <div class="surprise-msg" id="msg6">"Hazaron mehfilein hain aur lakhon mele hain, Par jahan tum nahi, wahan hum akele hain."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(7)">Surprise #7 🍕</button>
+                    <div class="surprise-msg" id="msg7">"I love you more than pizza. (And that's saying a lot!)"</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(8)">Surprise #8 🌍</button>
+                    <div class="surprise-msg" id="msg8">"You are my favorite place to go to when my mind searches for peace."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(9)">Surprise #9 ✨</button>
+                    <div class="surprise-msg" id="msg9">"Suno.. Tum meri wo adat ho jise main kabhi chhodna nahi chahta. ❤️"</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(10)">Surprise #10 ✈️</button>
+                    <div class="surprise-msg" id="msg10">"If I could fly, I'd be at your window right now. (Probably crashing, but there!)"</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(11)">Surprise #11 🌹</button>
+                    <div class="surprise-msg" id="msg11">"Meri zindgi ki sari khushiyan tere hone se hai."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(12)">Surprise #12 💊</button>
+                    <div class="surprise-msg" id="msg12">"Doctor ne vitamin 'U' ki kami batayi hai. Jaldi aao!"</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(13)">Surprise #13 💫</button>
+                    <div class="surprise-msg" id="msg13">"You are the best thing that's ever been mine."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(14)">Surprise #14 🤝</button>
+                    <div class="surprise-msg" id="msg14">"Tera haath haath mein ho toh safar aasaan lagta hai."</div>
+                </div>
+                <div>
+                    <button class="surprise-btn" onclick="toggleSurprise(15)">Surprise #15 🤗</button>
+                    <div class="surprise-msg" id="msg15">"Sending you a virtual hug that is tight enough to crack a rib (gently). 🫂"</div>
                 </div>
             </div>
-            <br><br><br>
         </div>
+
+        <br><br><br>
     </div>
 
     <script>
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
-        
-        // --- YOUR LIST OF FUNNY TEXTS ---
         const texts = [
-            "No",
-            "Are you sure?",
-            "It's wrong click",
-            "Think again!",
-            "Don't do this!",
-            "Mona please!",
-            "Have a heart!",
-            "I'm gonna cry...",
-            "You're breaking my heart ;(",
-            "I'll make you pasta!",
-            "I'll give you massages!",
-            "Don't be so cold!",
-            "Look at this sad face 🥺",
-            "But I love you!",
-            "Am I a joke to you?",
-            "Okay, now I'm actually sad",
-            "You're talking to your fav person!",
-            "Stop clicking this button!",
-            "Just click YES already!",
-            "Fine, I will ask again..",
-            "PLEASE?? :((("
+            "No", "Are you sure?", "It's wrong click", "Think again!", "Don't do this!", "Mona please!", "Have a heart!",
+            "I'm gonna cry...", "You're breaking my heart ;(", "I'll make you pasta!", "I'll give you massages!",
+            "Don't be so cold!", "Look at this sad face 🥺", "But I love you!", "Am I a joke to you?",
+            "Okay, now I'm actually sad", "You're talking to your fav person!", "Stop clicking this button!",
+            "Just click YES already!", "Fine, I will ask again..", "PLEASE?? :((("
         ];
         let clickCount = 0;
 
         function handleNoClick() {
             clickCount++;
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            const newSize = currentSize * 1.2; 
-            yesBtn.style.fontSize = newSize + "px";
+            yesBtn.style.fontSize = (currentSize * 1.2) + "px";
             const currentPadding = parseFloat(window.getComputedStyle(yesBtn).padding);
             yesBtn.style.padding = (currentPadding * 1.1) + "px";
-
             if (clickCount < texts.length) {
                 noBtn.innerText = texts[clickCount];
             } else {
@@ -415,16 +429,18 @@
             document.getElementById('contract').style.display = 'none';
         }
 
-        // --- NEW: FUNCTION TO OPEN LETTER ---
         function toggleLetter() {
             const envelope = document.querySelector('.envelope');
             envelope.classList.toggle('open');
         }
 
-        function revealPhoto(element) {
-            element.querySelector('.gift-overlay').style.display = 'none';
-            element.querySelector('img').style.display = 'block';
-            element.querySelector('.caption').style.display = 'block';
+        function toggleSurprise(id) {
+            const msg = document.getElementById('msg' + id);
+            if (msg.style.display === 'block') {
+                msg.style.display = 'none';
+            } else {
+                msg.style.display = 'block';
+            }
         }
     </script>
 </body>
