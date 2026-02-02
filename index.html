@@ -43,9 +43,11 @@
 
         .gif-container img {
             width: 200px;
+            height: auto;
             border-radius: 15px;
             margin-bottom: 20px;
             z-index: 10;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .buttons {
@@ -352,7 +354,7 @@
 
     <div class="header" id="welcome-screen">
         <div class="gif-container">
-            <img src="https://media.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Cute Cat">
+            <img src="https://i.pinimg.com/originals/c6/85/33/c6853331eb798d197600862590212971.gif" alt="Cute Cat">
         </div>
         <h1>Mona, will you be my Valentine?</h1>
         <p class="sub-text">Official invite from your long-distance boyfriend ❤️</p>
@@ -367,7 +369,7 @@
         
         <h1>Good choice babu 😇</h1>
         <div class="gif-container">
-            <img src="https://media.giphy.com/media/MdDb2d8sW5Fm/giphy.gif" alt="Hugs" style="width: 250px;">
+            <img src="https://i.pinimg.com/originals/f2/87/25/f287251786196236b23d94943916f194.gif" alt="Hugs" style="width: 250px;">
         </div>
         <p style="font-size: 1.2rem; margin-top: 10px;">
             You just unlocked unlimited hugs, kisses, and cuddles!<br>
@@ -573,4 +575,42 @@
         function acceptLove() {
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-            document
+            document.body.style.overflow = "auto"; 
+        }
+
+        function showContract() {
+            document.getElementById('contract').style.display = 'block';
+            document.getElementById('contract').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function hideContract() {
+            document.getElementById('contract').style.display = 'none';
+        }
+
+        function toggleLetter() {
+            const envelope = document.querySelector('.envelope');
+            envelope.classList.toggle('open');
+        }
+
+        function toggleSurprise(id) {
+            const msg = document.getElementById('msg' + id);
+            if (msg.style.display === 'block') {
+                msg.style.display = 'none';
+            } else {
+                msg.style.display = 'block';
+            }
+        }
+
+        function checkAnswer(btn, type) {
+            if (type === 'correct') {
+                btn.classList.add('correct');
+                btn.innerText += " ✅";
+            } else {
+                btn.classList.add('wrong');
+                btn.innerText += " ❌";
+                alert("Wrong answer! Try again 😜");
+            }
+        }
+    </script>
+</body>
+</html>
